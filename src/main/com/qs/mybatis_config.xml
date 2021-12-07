@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+        <setting name="jdbcTypeForNull" value="NULL" />
+        <setting name="lazyLoadingEnabled" value="true" />
+        <setting name="aggressiveLazyLoading" value="false" />
+        <setting name="useGeneratedKeys" value="true" />
+    </settings>
+
+    <!-- 配置框架的多数据源信息 -->
+    <environments default="dev_mysql">
+        <!-- 配置mysql开发环境-->
+        <environment id="dev_mysql">
+            <transactionManager type="JDBC" />
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver" />
+                <property name="url" value="jdbc:mysql://localhost:3306/mybatis_crud?useSSL=false&amp;serverTimezone=UTC" />
+                <property name="username" value="root" />
+                <property name="password" value="20191113417" />
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 批量注册映射文件 -->
+    <mappers>
+        <package name="main.com.qs.mapper"/>
+    </mappers>
+
+</configuration>
