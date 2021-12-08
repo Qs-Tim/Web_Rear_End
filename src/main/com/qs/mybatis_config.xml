@@ -19,7 +19,7 @@
             <transactionManager type="JDBC" />
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver" />
-                <property name="url" value="jdbc:mysql://localhost:3306/mybatis_crud?useSSL=false&amp;serverTimezone=UTC" />
+                <property name="url" value="jdbc:mysql://localhost:3306/bookmanage?useSSL=false&amp;serverTimezone=UTC" />
                 <property name="username" value="root" />
                 <property name="password" value="20191113417" />
             </dataSource>
