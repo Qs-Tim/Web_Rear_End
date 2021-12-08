@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qs.mybatis.mapper.ReaderMapper">
+
+    <!--  读者注册  -->
+    <insert id="register" parameterType="entity.Reader" keyProperty="id">
+        INSERT INTO t_reader(readerId,
+                             readerName,
+                             sex,
+                             registerTime,
+                             isDel,
+                             modifyTime)
+        VALUES(#{readerId},
+               #{readerName},
+               #{sex},
+               #{registerTime},
+               #{isDel},
+               #{modifyTime})
+    </insert>
+
+
+
+</mapper>

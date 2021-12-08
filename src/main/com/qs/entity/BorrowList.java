@@ -1,8 +1,11 @@
 package main.com.qs.entity;
 
+import org.springframework.stereotype.Repository;
+
 import java.sql.Date;
 
 //借阅实体类
+@Repository
 public class BorrowList {
     private int readerId;
     private int bookId;
