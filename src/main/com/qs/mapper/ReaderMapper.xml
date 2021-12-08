@@ -20,6 +20,16 @@
                #{modifyTime})
     </insert>
 
+    <insert id="registerPass" parameterType="entity.ID_pass">
+        insert into t_id_pass(readerId,
+                              readerPass,
+                              modifyTime,
+                              createTime)
+        values(#{readerId},
+               #{readerPass},
+               #{modifyTime},
+               #{createTime});
+    </insert>
 
 
 </mapper>
