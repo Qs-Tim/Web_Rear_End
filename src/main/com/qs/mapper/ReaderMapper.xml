@@ -5,7 +5,7 @@
 <mapper namespace="com.qs.mybatis.mapper.ReaderMapper">
 
     <!--  读者注册  -->
-    <insert id="register" parameterType="entity.Reader" keyProperty="id">
+    <insert id="register" parameterType="entity.Reader">
         INSERT INTO t_reader(readerId,
                              readerName,
                              sex,
@@ -20,7 +20,8 @@
                #{modifyTime})
     </insert>
 
-    <insert id="registerPass" parameterType="entity.ID_pass">
+    <!--  注册密码  -->
+    <insert id="registerPass" parameterType="entity.Id_Pass">
         insert into t_id_pass(readerId,
                               readerPass,
                               modifyTime,
@@ -30,6 +31,60 @@
                #{modifyTime},
                #{createTime});
     </insert>
+
+    <!--  修改用户密码  -->
+    <update id="updateReaderpass">
+        UPDATE t_id_pass
+        SET readerPass = #{readerPass}
+        WHERE readerId = #{readerId}
+    </update>
+
+    <!--  销毁用户账号  -->
+    <update id="destroyAccount">
+        UPDATE t_reader
+        SET isDel = 1
+        WHERE readerId = #{readerId}
+    </update>
+
+    <!--  查询所有读者信息  -->
+<!--    <select id="queryAllReaders" resultType="entity.Reader">-->
+<!--        SELECT readerId,-->
+<!--               readerName,-->
+<!--               sex,-->
+<!--               registerTime-->
+<!--        FROM t_reader-->
+<!--    </select>-->
+
+    <!--  查询读者信息  -->
+    <select id="queryReadersById" resultType="entity.Reader">
+        SELECT readerId,
+               readerName,
+               sex,
+               registerTime
+        FROM t_reader
+        WHERE
+            <if test="readerId != null and readerId != ''">
+                readerId = #{readerId} AND
+            </if>
+
+            <if test="readerName != null and readerName != ''">
+                readerName  =#{readerName} AND
+            </if>
+    </select>
+
+    <!--  验证读者密码  -->
+    <select id="judgePass">
+        SELECT COUNT(*)
+        FROM t_reader
+        WHERE readerId = #{readerId}
+    </select>
+
+    <!--  判断用户名是否重复  -->
+    <select id="judgeIdRepeat">
+        SELECT COUNT(*)
+        FROM t_reader
+        WHERE readerId = #{readerId}
+    </select>
 
 
 </mapper>
