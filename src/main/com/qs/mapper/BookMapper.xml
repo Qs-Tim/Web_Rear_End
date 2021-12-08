@@ -2,8 +2,47 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qs.mybatis.mapper.BookMapper">
+<mapper namespace="main.com.qs.dao.BookDao">
 
+    <!--  添加不存在的书籍  -->
+    <insert id="addBook" parameterType="entity.Book">
+        INSERT INTO t_book(ISBN,
+                           bookName,
+                           introduction,
+                           totalCount,
+                           intime,
+                           price,
+                           createId,
+                           isDel,
+                           modifyId,
+                           modifyTime,
+                           currentCount)
+        VALUES (#{ISBN},
+                #{bookName},
+                #{introduction},
+                #{totalCount},
+                #{intime},
+                #{price},
+                #{createId},
+                #{isDel},
+                #{modifyId},
+                #{modifyTime},
+                #{currentCount})
+    </insert>
 
+    <!--  添加已存在的书的库存  -->
+    <update id="addExistedBooks">
+        UPDATE t_book
+        SET totalCount = totalCount + 1
+        AND currentCount = currentCount + 1
+        WHERE id = #{id}
+    </update>
+
+    <!--  根据ISBN获取书籍的数据库id  -->
+    <select id="getBookId">
+        SELECT id
+        FROM t_book
+        WHERE ISBN = #{ISBN}
+    </select>
 
 </mapper>
