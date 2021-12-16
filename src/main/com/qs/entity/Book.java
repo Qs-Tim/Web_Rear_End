@@ -4,6 +4,7 @@ import java.sql.Date;
 
 // 书籍实体类
 public class Book {
+    private int id;                 //数据库id
     private String ISBN;            //ISBN编码
     private String bookName;        //书名
     private String introduction;    //书籍介绍
@@ -15,6 +16,14 @@ public class Book {
     private int modifyId;           //修改者id
     private Date modifyTime;        //修改时间
     private int currentCount;       //书籍当前库存
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getISBN() {
         return ISBN;

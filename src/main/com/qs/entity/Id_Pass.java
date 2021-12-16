@@ -4,6 +4,7 @@ import java.sql.Date;
 
 // id_pass实体类
 public class Id_Pass {
+    private int id;                 //数据库id
     private String readerId;        //读者id
     private String readerPass;      //读者登录密码
     private Date modifyTime;        //修改时间
@@ -17,6 +18,14 @@ public class Id_Pass {
                 ", modifyTime=" + modifyTime +
                 ", creteTime=" + creteTime +
                 '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getReaderId() {

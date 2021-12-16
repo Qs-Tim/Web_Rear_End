@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.com.qs.dao.BookBorrowDao">
+
+    <!--  借阅书籍  -->
+    <update id="id_bookIn">
+        UPDATE t_borrowlist
+        SET count = count + #{count}
+        WHERE id = #{id}
+    </update>
+
+    <!--  归还书籍  -->
+    <update id="id_bookOut">
+        UPDATE t_borrowlist
+        SET count = count - #{count}
+        WHERE id = #{id}
+    </update>
+
+    <!--  获取借阅历史  -->
+    <select id="getBorrowHistory" resultType="entity.BorrrowList">
+        SELECT tbl.bookId, tbl.count, tb.bookName
+        FROM t_borrowlist tbl JOIN t_book tb
+                                   ON tbl.bookId = tb.id
+        WHERE tbl.id = #{id}
+    </select>
+
+    <!--  判断当前书籍是否已经归还成功  -->
+    <update id="isBookReturned">
+        SELECT isDel
+        FROM t_borrowlist
+        WHERE id = #{id}
+    </update>
+
+    <!--  存入修改时间和修改人  -->
+    <update id="updateTimeAndPerson">
+        UPDATE t_borrowlist
+        SET modifyId = #{id}, modifyTime = #{modifyTime}
+        WHERE id = #{id}
+    </update>
+
+</mapper>

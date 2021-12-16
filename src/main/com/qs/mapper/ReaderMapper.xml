@@ -46,15 +46,6 @@
         WHERE id = #{id}
     </update>
 
-    <!--  查询所有读者信息  -->
-<!--    <select id="queryAllReaders" resultType="entity.Reader">-->
-<!--        SELECT readerId,-->
-<!--               readerName,-->
-<!--               sex,-->
-<!--               registerTime-->
-<!--        FROM t_reader-->
-<!--    </select>-->
-
     <!--  查询读者信息  -->
     <select id="queryReadersById" resultType="entity.Reader">
         SELECT readerId,
@@ -92,5 +83,19 @@
         FROM t_reader
         WHERE readerId = #{readerId}
     </select>
+
+    <!--  判断当前读者是否被注销  -->
+    <select id="getReaderIsDel">
+        SELECT isDel
+        FROM t_reader
+        WHERE id = #{id}
+    </select>
+
+    <!--  存入修改时间和修改人  -->
+    <update id="updateTimeAndPerson">
+        UPDATE t_reader
+        SET modifyId = #{id}, modifyTime = #{modifyTime}
+        WHERE id = #{id}
+    </update>
 
 </mapper>

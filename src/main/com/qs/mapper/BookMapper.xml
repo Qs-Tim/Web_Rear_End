@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="main.com.qs.dao.BookDao">
 
-    <!--  添加不存在的书籍  -->
+    <!--  添加在数据库中不存在的书籍  -->
     <insert id="addBook" parameterType="entity.Book">
         INSERT INTO t_book(ISBN,
                            bookName,
@@ -30,14 +30,6 @@
                 #{currentCount})
     </insert>
 
-    <!--  添加已存在的书的库存  -->
-<!--    <update id="addExistedBooks">-->
-<!--        UPDATE t_book-->
-<!--        SET totalCount = totalCount + #{count}-->
-<!--        AND currentCount = currentCount + #{count}-->
-<!--        WHERE id = #{id}-->
-<!--    </update>-->
-
     <!--  根据ISBN获取书籍的数据库id  -->
     <select id="getBookId">
         SELECT id
@@ -61,34 +53,18 @@
         WHERE id = #{id}
     </update>
 
-    <!--  借阅书籍  -->
-    <update id="id_bookIn">
-        UPDATE t_borrowlist
-        SET count = count + #{count},
-
-        WHERE id = #{id}
-    </update>
-
-    <!--  归还书籍  -->
-    <update id="id_bookOut">
-        UPDATE t_borrowlist
-        SET count = count - #{count}
-        WHERE id = #{id}
-    </update>
-
-    <!--  获取借阅历史  -->
-    <select id="getBorrowHistory" resultType="entity.BorrrowList">
-        SELECT tbl.bookId, tbl.count, tb.bookName
-        FROM t_borrowlist tbl JOIN t_book tb
-        ON tbl.bookId = tb.bookId
-        WHERE readerId = #{readerId}
-    </select>
-
     <!--  判断当前书籍是否可用  -->
     <select id="getBookIsDel">
         SELECT isDel
         FROM t_book
-        WHERE bookId = #{bookId}
+        WHERE id = #{id}
     </select>
+
+    <!--  存入修改时间和修改人  -->
+    <update id="updateTimeAndPerson">
+        UPDATE t_book
+        SET modifyId = #{id}, modifyTime = #{modifyTime}
+        WHERE id = #{id}
+    </update>
 
 </mapper>

@@ -7,13 +7,14 @@ import java.sql.Date;
 //借阅实体类
 @Repository
 public class BorrowList {
-    private int readerId;
-    private int bookId;
-    private int count;
-    private int isDel;
-    private Date modifyTime;
-    private Date createTime;
-    private int modifyId;
+    private int id;                 //数据库id
+    private int readerId;           //借阅者id
+    private int bookId;             //借阅书籍id
+    private int count;              //借阅数量
+    private int isDel;              //书籍是否归还完成
+    private Date modifyTime;        //归还时间
+    private Date createTime;        //借阅时间
+    private int modifyId;           //修改人id
 
     @Override
     public String toString() {
@@ -26,6 +27,14 @@ public class BorrowList {
                 ", createTime=" + createTime +
                 ", modifyId=" + modifyId +
                 '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getReaderId() {
