@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="main.com.qs.dao.ReaderDao">
+<mapper namespace="main.com.qs.dao.ReaderMapper">
 
     <!--  读者注册  -->
     <insert id="register" parameterType="entity.Reader">
@@ -47,7 +47,7 @@
     </update>
 
     <!--  查询读者信息  -->
-    <select id="queryReadersById" resultType="entity.Reader">
+    <select id="queryReaderMessageById" resultType="entity.Reader">
         SELECT readerId,
                readerName,
                sex,
@@ -61,6 +61,12 @@
             <if test="readerName != null and readerName != ''">
                 readerName  =#{readerName} AND
             </if>
+
+            <if test="readerId != null and readerId != ''">
+                readerName  =#{readerId} AND
+            </if>
+
+        1 = 1
     </select>
 
     <!--  验证读者密码  -->
@@ -94,7 +100,7 @@
     <!--  存入修改时间和修改人  -->
     <update id="updateTimeAndPerson">
         UPDATE t_reader
-        SET modifyId = #{id}, modifyTime = #{modifyTime}
+        SET modifyId = #{modifyid}, modifyTime = #{modifyTime}
         WHERE id = #{id}
     </update>
 

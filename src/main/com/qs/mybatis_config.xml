@@ -12,6 +12,10 @@
         <setting name="useGeneratedKeys" value="true" />
     </settings>
 
+    <typeAliases>
+        <package name="main.com.qs.entity"/>
+    </typeAliases>
+
     <!-- 配置框架的多数据源信息 -->
     <environments default="dev_mysql">
         <!-- 配置mysql开发环境-->
@@ -28,7 +32,7 @@
 
     <!-- 批量注册映射文件 -->
     <mappers>
-        <package name="main.com.qs.mapper"/>
+        <mapper resource="main/com/qs/mapper"/>
     </mappers>
 
 </configuration>

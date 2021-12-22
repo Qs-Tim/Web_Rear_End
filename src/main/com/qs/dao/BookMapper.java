@@ -1,15 +1,12 @@
 package main.com.qs.dao;
 
 import main.com.qs.entity.Book;
-import main.com.qs.entity.BorrowList;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-
 @Mapper
 @Repository
-public interface BookDao {
+public interface BookMapper {
     //添加书籍
     int addBook(Book book);
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Mapper
 @Repository
-public interface BookBorrowDao {
+public interface BookBorrowMapper {
     //借阅书籍
     int id_bookIn(int id, int count);
 

@@ -1,5 +1,8 @@
 package main.com.qs.entity;
 
+import org.springframework.stereotype.Component;
+
+import java.io.Serializable;
 import java.sql.Date;
 
 // 读者实体类
@@ -11,6 +14,18 @@ public class Reader {
     private Date registerTime;      //注册时间
     private int isDel;              //是否注销
     private Date modifyTime;        //修改时间
+
+    public Reader(String readerId, String readerName, int sex, Date registerTime, int isDel, Date modifyTime) {
+        this.readerId = readerId;
+        this.readerName = readerName;
+        this.sex = sex;
+        this.registerTime = registerTime;
+        this.isDel = isDel;
+        this.modifyTime = modifyTime;
+    }
+
+    public Reader() {
+    }
 
     public int getId() {
         return id;
